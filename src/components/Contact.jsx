@@ -7,6 +7,7 @@ export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const backenduri =import.meta.env.VITE_BACKEND_URI
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
@@ -14,7 +15,7 @@ export default function Contact() {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:5000/send-mail", {
+      const res = await fetch(`${backenduri}/send-mail`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
@@ -29,7 +30,7 @@ export default function Contact() {
       savedContacts.push(form);
       localStorage.setItem("contactRequests", JSON.stringify(savedContacts));
       setSubmitted(true);
-      setLoading(false);
+      setLoading(false);   
       setForm({ name: "", email: "", phone: "", message: "" });
     } catch (err) {
       console.error("Frontend Error:", err);
