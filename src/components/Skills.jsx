@@ -25,17 +25,17 @@ export default function Skills() {
   ];
 
   return (
-    <section id="skills" className="min-h-screen bg-[#041625] text-white px-4 sm:px-8 md:px-16 py-16 md:py-24 relative overflow-hidden">
+    <section id="skills" className="min-h-screen bg-[#041625] text-white px-4 md:px-16 py-16 md:py-24 relative overflow-hidden">
       <div className="max-w-6xl mx-auto relative z-10">
         
         <div className="text-center mb-10 md:mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-white to-purple-400 animate-pulse inline-block">
+          <h2 className="text-3xl md:text-5xl font-black bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-white to-purple-400 animate-pulse inline-block">
             Skills & Expertise
           </h2>
         </div>
 
-        {/* Grid: 1 column on mobile, 2 columns on medium+ screens */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
+        {/* Changed grid-cols-1 for mobile, md:grid-cols-2 for desktop */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           {skillCategories.map((category, index) => (
             <motion.div
               key={index}
@@ -43,12 +43,12 @@ export default function Skills() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="relative group p-[1px] md:p-[2px] rounded-3xl md:rounded-[2rem] overflow-hidden"
+              className="relative group p-[2px] rounded-[1.5rem] md:rounded-[2rem] overflow-hidden"
             >
-              {/* THE ROTATING BORDER BEAM - Optimized opacity for mobile touch */}
-              <div className="absolute inset-[-1000%] animate-[spin_5s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,transparent_0%,#22d3ee_50%,transparent_100%)] opacity-30 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500" />
+              {/* FIXED BORDER BEAM: Added opacity for touch devices and fixed overflow */}
+              <div className="absolute inset-[-500%] animate-[spin_5s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,transparent_0%,#22d3ee_50%,transparent_100%)] opacity-20 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500" />
               
-              <div className="relative h-full bg-[#051a2c]/90 backdrop-blur-3xl p-6 md:p-8 rounded-[1.4rem] md:rounded-[1.9rem] border border-white/5">
+              <div className="relative h-full bg-[#051a2c] backdrop-blur-3xl p-6 md:p-8 rounded-[1.4rem] md:rounded-[1.9rem] border border-white/5">
                 <h3 className={`text-lg md:text-xl font-bold mb-4 md:mb-6 bg-clip-text text-transparent bg-gradient-to-r ${category.color}`}>
                   {category.title}
                 </h3>
@@ -57,9 +57,8 @@ export default function Skills() {
                   {category.skills.map((skill, idx) => (
                     <motion.span 
                       key={idx}
-                      whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      className="px-3 py-1.5 md:px-4 md:py-2 rounded-lg md:rounded-xl bg-white/5 border border-white/10 text-gray-300 text-[10px] md:text-xs font-bold uppercase tracking-widest hover:bg-cyan-400 hover:text-black hover:shadow-[0_0_15px_rgba(34,211,238,0.5)] transition-all duration-300 cursor-default"
+                      className="px-3 py-1.5 md:px-4 md:py-2 rounded-lg md:rounded-xl bg-white/5 border border-white/10 text-gray-300 text-[10px] md:text-xs font-bold uppercase tracking-widest hover:bg-cyan-400 hover:text-black hover:shadow-[0_0_15px_rgba(34,211,238,0.5)] transition-all duration-300"
                     >
                       {skill}
                     </motion.span>
